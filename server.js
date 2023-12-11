@@ -4,10 +4,15 @@ const http = require('http');
 const socketIO = require('socket.io');
 const app = express();
 const server = http.createServer(app);
-const io = socketIO(server);
+const io = socketIO(server,{
+    cors : {origin : "*"}
+});
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 
+app.get("/",(req,res)=>{
+    res.send("hii i am here live")
+})
 io.on('connection', (socket) => {
     console.log('A user connected');
 
